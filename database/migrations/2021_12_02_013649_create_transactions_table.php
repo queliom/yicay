@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary();;
-            $table->string('name', 100);
-            $table->string('email')->unique();
-            $table->string('document')->unique();
-            $table->string('utype', 25);
-            $table->string('password');
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('user_id_to');
+            $table->uuid('user_id_from');
+            $table->float('amount');
             $table->dateTime('created_at')->default(DB::raw('NOW()'));
-            $table->tinyInteger('is_active');
+            $table->string('situation', 50)->default('in_process');
         });
     }
 
@@ -33,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('transactions');
     }
 }

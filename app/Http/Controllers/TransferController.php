@@ -6,5 +6,9 @@ use Illuminate\Http\Request;
 
 class TransferController extends Controller
 {
-    //
+    public function create(Request $request) {
+
+        
+
+    }
 }
