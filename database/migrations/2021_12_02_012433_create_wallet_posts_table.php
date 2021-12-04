@@ -18,8 +18,6 @@ class CreateWalletPostsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('wallet_id');
             $table->uuid('transaction_id');
-            $table->float('wallet_balance_before');
-            $table->float('wallet_balance_after');
             $table->float('amount');
             $table->dateTime('created_at')->default(DB::raw('NOW()'));;
             $table->string('pay_status', 25)->default('processed');

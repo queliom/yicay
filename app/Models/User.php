@@ -21,5 +21,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+    
+    public static function exists(string $userUuid): bool
+    {
+        $hasUser = self::where('id', $userUuid)
+            ->first();
+            
+        return $hasUser ? true : false;
+    }
+
+    public static function isConsumer(string $userUuid): bool
+    {   
+        $userIsConsumer = self::where('id', $userUuid)
+            ->where('utype', 'consumer')
+            ->first();
+        
+        return $userIsConsumer ? true : false;
+    }
 
 }

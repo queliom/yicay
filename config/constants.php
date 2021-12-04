@@ -2,6 +2,6 @@
 
 return [
     'transactions' => [
-        'last_tolerated_equivalence' => 5,
+        'last_tolerated_equivalence' => 10,
     ]
 ];
