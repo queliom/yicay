@@ -20,8 +20,8 @@ class ConfirmationMessageQueue extends Model
 
     public $timestamps = false;
 
-    public static function add(string $type, string $body) {
-        
+    public static function add(string $type, string $body)
+    {
         self::create([
             'id' => Str::uuid()->toString(),
             'mtype' => $type,

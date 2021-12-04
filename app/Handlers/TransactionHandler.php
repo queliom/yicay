@@ -3,19 +3,20 @@
 namespace App\Handlers;
 
 use App\Models\Transaction;
-use App\Services\AuthorizationService;
 use Illuminate\Support\Facades\Config;
 
-class TransactionHandler {
-    
+class TransactionHandler 
+{
     public static function timeBetweenEquivalentTransactionsIsTolerated(array $payload): bool
     {
         $seconds = Transaction::timeSecondsSinceEquivalentProperties($payload);
 
-        if(is_numeric($seconds) && $seconds <= Config::get('constants.transactions.last_tolerated_equivalence')) {
+        if (
+            is_numeric($seconds) && 
+            $seconds <= 
+            Config::get('constants.transactions.last_tolerated_equivalence')) {
             return false;
         }
-
         return true;
     }
 
@@ -23,10 +24,4 @@ class TransactionHandler {
     {
         return $payer != $payee ? true : false;
     }
-
-    public function getAuthorizationMock(): bool
-    {
-        return AuthorizationService::get() ? true : false;
-    }
-
 }

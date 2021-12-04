@@ -19,9 +19,12 @@ class WalletPost extends Model
         'amount',
     ];
 
-    public static function debitEntry(string $walletUuid, string $transactionUuid, float $amount) : void
-    {
-        WalletPost::create([
+    public static function debitEntry(
+        string $walletUuid, 
+        string $transactionUuid, 
+        float $amount) : void {
+
+        self::create([
             'id' => Str::uuid()->toString(),
             'wallet_id' => $walletUuid,
             'transaction_id' => $transactionUuid,
@@ -29,9 +32,12 @@ class WalletPost extends Model
         ]);
     }
 
-    public static function creditEntry(string $walletUuid, string $transactionUuid, float $amount) : void
-    {
-        WalletPost::create([
+    public static function creditEntry(
+        string $walletUuid, 
+        string $transactionUuid, 
+        float $amount) : void {
+            
+        self::create([
             'id' => Str::uuid()->toString(),
             'wallet_id' => $walletUuid,
             'transaction_id' => $transactionUuid,

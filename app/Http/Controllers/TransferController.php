@@ -27,9 +27,19 @@ class TransferController extends Controller
     public function create(Request $request)
     {   
         $rules = [
-            'amount' => ['required', 'regex:/^\d*(\.\d{2})?$/', 'not_in:0'],
-            'payer' => ['required', 'uuid'],
-            'payee' => ['required', 'uuid']
+            'amount' => [
+                'required', 
+                'regex:/^\d*(\.\d{2})?$/', 
+                'not_in:0'
+            ],
+            'payer' => [
+                'required', 
+                'uuid'
+            ],
+            'payee' => [
+                'required', 
+                'uuid'
+            ]
         ];
 
         $fields = $request->only(['amount', 'payer', 'payee']);
@@ -41,7 +51,7 @@ class TransferController extends Controller
         }
 
         try {
-
+            
             $result = $this->repository->processTransfer($fields);
             return response()->json($result, 200);
 
